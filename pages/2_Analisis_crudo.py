@@ -1,8 +1,8 @@
 """
-2_Analisis_Procesado.py
+1_Analisis_Crudo.py
 -----------------------
 Página de Streamlit para el análisis exploratorio de 
-datos procesados del dataset de partículas.
+datos crudos del dataset de partículas.
 
 Permite visualizar la distribución de features, la correlación entre ellas 
 y su relación con la clase (Quarks vs Gluones) a través de gráficos 
@@ -21,13 +21,15 @@ import streamlit as st
 import plotly.express as px
 import matplotlib.pyplot as plt
 import seaborn as sns
-from src.data_loader import get_preprocessed_data, load_raw_data
+from src.data_loader import load_raw_data
+from sidebar_config import render_sidebar
 
-st.set_page_config(page_title="Análisis de datos procesados", layout="wide")
-st.header("Análisis de datos procesados")
+st.set_page_config(page_title="Análisis de datos crudos", layout="wide")
+render_sidebar()
+
+st.header("Análisis de datos crudos")
 
 df = load_raw_data()
-df = get_preprocessed_data(df)
 features = ['pT', 'eta', 'mass', 'No. particles']
 
 # --- Imagen estática ---
